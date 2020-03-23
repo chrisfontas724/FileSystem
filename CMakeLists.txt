@@ -2,6 +2,8 @@
 # Use of this source code is governed by the license that can be
 # found in the LICENSE file.
 
+cmake_minimum_required (VERSION 3.7)
+
 add_library (streaming
     ${CMAKE_CURRENT_SOURCE_DIR}/streaming/buffer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/streaming/file_stream.cpp
