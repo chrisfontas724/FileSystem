@@ -8,6 +8,8 @@
 #include <sstream>
 #include <fstream>
 #include <climits>
+#include <cstring>
+#include <cassert>
 #include <algorithm>
 #include <unistd.h>
 #include <sys/types.h>
