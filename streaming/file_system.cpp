@@ -14,8 +14,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#ifndef WIN32
 #include <sys/dir.h>
 #include <pwd.h>
+#else
+#include <windows.h>
+#endif
+
 #ifndef WIN32
 #include <unistd.h>
 #endif
@@ -135,7 +141,9 @@ bool FileSystem::makeFile(const std::string& filename) const {
 
 
 bool FileSystem::makeDirectory(const std::string& directory) const {
+#ifndef WIN32
     mkdir((directory_ + directory).c_str(), 0777);
+#endif
     return true;
 }
 
@@ -247,6 +255,7 @@ bool FileSystem::writeBinary(const std::string& filename, const Buffer& buffer) 
 
 std::vector<std::string> FileSystem::getSubDirectories() {
     std::vector<std::string> result;
+#ifndef WIN32
     DIR *dir = opendir(directory_.c_str());
     struct dirent *entry = readdir(dir);
     while (entry != NULL) {
@@ -257,6 +266,7 @@ std::vector<std::string> FileSystem::getSubDirectories() {
         }
         entry = readdir(dir);
     }
+#endif
     return result;
 }
 
@@ -283,6 +293,7 @@ int32_t FileSystem::clearAllFiles(bool recursive) {
 
 
 int32_t FileSystem::__clearAllFiles(const std::string& dirpath, bool recursive) {
+#ifndef WIN32
     if (dirpath.empty()) {
         return SUCCESS_STAT;
     }
@@ -333,6 +344,7 @@ int32_t FileSystem::__clearAllFiles(const std::string& dirpath, bool recursive) 
 
     closedir(theFolder);
 
+#endif
     return SUCCESS_STAT;
 }
 } // cxl

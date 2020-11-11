@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 cmake_minimum_required (VERSION 3.7)
+project(FileSystem)
 
 add_library (streaming
     ${CMAKE_CURRENT_SOURCE_DIR}/streaming/buffer.cpp
