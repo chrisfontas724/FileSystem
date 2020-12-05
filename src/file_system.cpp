@@ -14,9 +14,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/dir.h>
-#include <pwd.h>
 #ifndef WIN32
+#include <pwd.h>
+#include <sys/dir.h>
 #include <unistd.h>
 #endif
 
@@ -135,7 +135,7 @@ bool FileSystem::makeFile(const std::string& filename) const {
 
 
 bool FileSystem::makeDirectory(const std::string& directory) const {
-    mkdir((directory_ + directory).c_str(), 0777);
+   // mkdir((directory_ + directory).c_str(), 0777);
     return true;
 }
 
@@ -247,16 +247,16 @@ bool FileSystem::writeBinary(const std::string& filename, const Buffer& buffer) 
 
 std::vector<std::string> FileSystem::getSubDirectories() {
     std::vector<std::string> result;
-    DIR *dir = opendir(directory_.c_str());
-    struct dirent *entry = readdir(dir);
-    while (entry != NULL) {
-        if (entry->d_type == DT_DIR) {
-            if(strlen(entry->d_name) > 2) {
-                result.push_back(entry->d_name);
-            }
-        }
-        entry = readdir(dir);
-    }
+    // DIR *dir = opendir(directory_.c_str());
+    // struct dirent *entry = readdir(dir);
+    // while (entry != NULL) {
+    //     if (entry->d_type == DT_DIR) {
+    //         if(strlen(entry->d_name) > 2) {
+    //             result.push_back(entry->d_name);
+    //         }
+    //     }
+    //     entry = readdir(dir);
+    // }
     return result;
 }
 
@@ -283,55 +283,55 @@ int32_t FileSystem::clearAllFiles(bool recursive) {
 
 
 int32_t FileSystem::__clearAllFiles(const std::string& dirpath, bool recursive) {
-    if (dirpath.empty()) {
-        return SUCCESS_STAT;
-    }
+    // if (dirpath.empty()) {
+    //     return SUCCESS_STAT;
+    // }
 
-    DIR *theFolder = opendir(dirpath.c_str());
-    struct dirent *next_file;
-    char filepath[1024];
-    int ret_val;
+    // DIR *theFolder = opendir(dirpath.c_str());
+    // struct dirent *next_file;
+    // char filepath[1024];
+    // int ret_val;
 
-    if (theFolder == NULL) {
-        return errno;
-    }
+    // if (theFolder == NULL) {
+    //     return errno;
+    // }
 
-    while ( (next_file = readdir(theFolder)) != NULL ) {
-        // Build the path for each file in the folder.
-        sprintf(filepath, "%s/%s", dirpath.c_str(), next_file->d_name);
+    // while ( (next_file = readdir(theFolder)) != NULL ) {
+    //     // Build the path for each file in the folder.
+    //     sprintf(filepath, "%s/%s", dirpath.c_str(), next_file->d_name);
 
-        //we don't want to process the pointer to "this" or "parent" directory.
-        if ((strcmp(next_file->d_name,"..") == 0) ||
-            (strcmp(next_file->d_name,"." ) == 0) ) {
-            continue;
-        }
+    //     //we don't want to process the pointer to "this" or "parent" directory.
+    //     if ((strcmp(next_file->d_name,"..") == 0) ||
+    //         (strcmp(next_file->d_name,"." ) == 0) ) {
+    //         continue;
+    //     }
 
-        // dirExists will check if the "filepath" is a directory.
-        if (directoryExists(filepath)) {
-            if (!recursive) {
-                // If we aren't recursively deleting in subfolders, skip this dir.
-                 continue;
-            }
+    //     // dirExists will check if the "filepath" is a directory.
+    //     if (directoryExists(filepath)) {
+    //         if (!recursive) {
+    //             // If we aren't recursively deleting in subfolders, skip this dir.
+    //              continue;
+    //         }
 
-            ret_val = __clearAllFiles(filepath, recursive);
+    //         ret_val = __clearAllFiles(filepath, recursive);
 
-            if (ret_val != SUCCESS_STAT) {
-                closedir(theFolder);
-                return ret_val;
-            }
-        }
+    //         if (ret_val != SUCCESS_STAT) {
+    //             closedir(theFolder);
+    //             return ret_val;
+    //         }
+    //     }
 
-        ret_val = remove(filepath);
-        //ENOENT occurs when i folder is empty, or is a dangling link, in
-        //which case we will say it was a success because the file is gone
-        if (ret_val != SUCCESS_STAT && ret_val != ENOENT) {
-            closedir(theFolder);
-            return ret_val;
-        }
+    //     ret_val = remove(filepath);
+    //     //ENOENT occurs when i folder is empty, or is a dangling link, in
+    //     //which case we will say it was a success because the file is gone
+    //     if (ret_val != SUCCESS_STAT && ret_val != ENOENT) {
+    //         closedir(theFolder);
+    //         return ret_val;
+    //     }
 
-    }
+    // }
 
-    closedir(theFolder);
+    // closedir(theFolder);
 
     return SUCCESS_STAT;
 }
