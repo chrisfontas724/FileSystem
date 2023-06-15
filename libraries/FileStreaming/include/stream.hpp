@@ -5,7 +5,7 @@
 #ifndef STREAM_HPP_
 #define STREAM_HPP_
 
-#include "streaming/file_system.hpp"
+#include "file_system.hpp"
 
 namespace cxl {
     class Stream {

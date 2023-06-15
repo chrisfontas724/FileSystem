@@ -2,7 +2,7 @@
 // Use of this source code is governed by our license that can be
 // found in the LICENSE file.
 
-#include "streaming/file_system.hpp"
+#include "file_system.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <sstream>

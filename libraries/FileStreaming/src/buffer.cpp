@@ -2,7 +2,7 @@
 // Use of this source code is governed by our license that can be
 // found in the LICENSE file.
 
-#include "streaming/buffer.hpp"
+#include "buffer.hpp"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

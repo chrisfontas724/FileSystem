@@ -5,8 +5,8 @@
 #ifndef MEMORY_STREAM_HPP_
 #define MEMORY_STREAM_HPP_
 
-#include "streaming/stream.hpp"
-#include "streaming/buffer.hpp"
+#include "stream.hpp"
+#include "buffer.hpp"
 #include <string>
 
 namespace cxl {

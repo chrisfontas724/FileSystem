@@ -5,7 +5,7 @@
 #ifndef FILE_STREAM_HPP_
 #define FILE_STREAM_HPP_
 
-#include "streaming/stream.hpp"
+#include "stream.hpp"
 #include <sstream>
 
 namespace cxl {
