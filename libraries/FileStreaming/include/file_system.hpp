@@ -53,6 +53,7 @@ public:
     static const std::string desktopPath();
     static const std::string homePath();
     static const std::string currentPath();
+    static const std::string getCurrentExecutablePath();
     static bool directoryExists(const std::string& dir);
         
 private:

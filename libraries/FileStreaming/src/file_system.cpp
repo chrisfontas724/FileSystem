@@ -14,14 +14,15 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#ifndef WIN32
+#ifndef _WIN32
 #include <pwd.h>
 #include <sys/dir.h>
 #include <unistd.h>
 #endif
 
-#ifdef WIN32
+#ifdef _WIN32
 #define stat _stat
+#include <windows.h>
 #endif
 
 #define SUCCESS_STAT 0
@@ -107,6 +108,17 @@ const std::string FileSystem::currentPath() {
     getcwd( buff, 1000 );
     std::string current_working_dir(buff);
     return current_working_dir + "/";
+}
+
+const std::string FileSystem::getCurrentExecutablePath() {
+    char buffer[MAX_PATH];
+    GetModuleFileName(nullptr, buffer, MAX_PATH);
+
+    std::string fullPath(buffer);
+    std::size_t lastSlash = fullPath.find_last_of("\\/");
+    std::string exePath = fullPath.substr(0, lastSlash);
+
+    return exePath;
 }
 
 
