@@ -14,7 +14,6 @@ namespace cxl {
 class FileSystem {
 public:
         
-    FileSystem(){}
     FileSystem(const std::string& directory);
         
     FileSystem* getSubSystem(const std::string& directory) const;

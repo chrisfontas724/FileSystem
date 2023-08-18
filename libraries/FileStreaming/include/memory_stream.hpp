@@ -27,6 +27,16 @@ namespace cxl {
         bool readString(std::string& str);
         
         void rewind();
+
+        template<typename T>
+        const T* data() {
+            return static_cast<T>(buffer_.data());
+        }
+
+        uint64_t size() const {
+            return buffer_.size();
+        }
+
         
     private:
         bool writeBuffer(const void* buffer, uint64_t size, uint64_t count) override;

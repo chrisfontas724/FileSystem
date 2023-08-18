@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project("File Streaming"
+project("File_Streaming"
     VERSION 0.9.1
     DESCRIPTION "A project to test the file streaming library")
 
