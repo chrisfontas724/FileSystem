@@ -110,7 +110,7 @@ const std::string FileSystem::currentPath() {
     return current_working_dir + "/";
 }
 
-const std::string FileSystem::getCurrentExecutablePath() {
+const std::string FileSystem::currentExecutablePath() {
     char buffer[MAX_PATH];
     GetModuleFileName(nullptr, buffer, MAX_PATH);
 
