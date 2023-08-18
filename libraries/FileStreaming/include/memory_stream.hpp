@@ -30,11 +30,12 @@ namespace cxl {
 
         template<typename T>
         const T* data() {
-            return static_cast<T>(buffer_.data());
+            return reinterpret_cast<T*>(buffer_.data());
         }
 
+        template<typename T>
         uint64_t size() const {
-            return buffer_.size();
+            return buffer_.size() / sizeof(T);
         }
 
         

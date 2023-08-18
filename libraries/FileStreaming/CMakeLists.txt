@@ -29,7 +29,6 @@ target_sources(${PROJECT_NAME}
         src/stream.cpp
 )
 
-
 target_include_directories(${PROJECT_NAME}
     PRIVATE
         # where the library itself will look for its internal headers
@@ -50,14 +49,6 @@ set(public_headers
     include/stream.hpp
 )
 
-# not for MSVC
-#if(CMAKE_COMPILER_IS_GNUCXX)
-    # compile options for this target only
-    # treat warnings as errors
-    #target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
-#endif()
-
 # where to find our CMake modules
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-#message(STATUS "CMake module path: ${CMAKE_MODULE_PATH}")
 include(Installing)
